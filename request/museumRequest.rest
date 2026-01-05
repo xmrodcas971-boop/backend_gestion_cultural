@@ -1,0 +1,19 @@
+### GET /api/museums recupera todos los museos
+GET http://localhost:3000/api/museums
+
+### GET /api/museums/:id recupera un museo
+GET http://localhost:3000/api/museums/1
+### GET /api/museums/:id recupera un museo - NOT FOUND(404)
+GET http://localhost:3000/api/museums/50
+
+### POST /api/museums/ crea un museo 
+POST http://localhost:3000/api/museums
+Content-Type: application/json
+
+{
+    "name": "Museo de Arte Contemporáneo",
+    "city" : "Sevilla",
+    "annual_budget" : 500000.00,
+    "is_public" : true,
+    "opening_date" : "2010-05-20"
+}

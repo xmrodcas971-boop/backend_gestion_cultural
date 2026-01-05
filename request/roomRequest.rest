@@ -1,0 +1,20 @@
+### GET /api/rooms recupera todos los salas
+GET http://localhost:3000/api/rooms
+
+### GET /api/rooms/:id recupera un sala
+GET http://localhost:3000/api/rooms/1
+### GET /api/rooms/:id recupera un sala - NOT FOUND(404)
+GET http://localhost:3000/api/rooms/50
+
+### POST /api/rooms  (crear una sala)
+POST http://localhost:3000/api/rooms
+Content-Type: application/json
+
+{
+    "name": "Sala de Arte Contemporáneo",
+    "capacity": 120,
+    "area": 350.50,
+    "is_climatized": true,
+    "opening_date": "2015-03-10",
+    "museum_id": 1
+}
