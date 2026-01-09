@@ -1,2 +1,3 @@
 # backend_gestion_cultural
-Backend del trabajo de node
+Esta en la rama master el proyecto
+
