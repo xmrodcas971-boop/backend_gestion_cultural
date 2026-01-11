@@ -6,7 +6,8 @@ const museumController = require('../controllers/museumController');
 router.get('/', museumController.getAllMuseums);
 router.get('/:id', museumController.getMuseumById);
 router.post('/', museumController.createMuseum);
-// router.put('/:id', museumController.updateMuseum);
-// router.delete('/:id', museumController.deleteMuseum);
+router.put('/:id', museumController.updateMuseum);
+router.delete('/:id', museumController.deleteMuseum);
+//listado parametrizado
 
 module.exports = router;

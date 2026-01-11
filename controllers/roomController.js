@@ -12,7 +12,7 @@ class RoomController {
         mensaje: "Salas recuperadas correctamente",
       });
     } catch (err) {
-    logMensaje("Error en getAllRooms:", err);
+      logMensaje("Error en getAllRooms:", err);
       return res.status(500).json({
         ok: false,
         datos: null,
@@ -30,7 +30,6 @@ class RoomController {
         datos: roomNew,
         mensaje: "Sala creada correctamente",
       });
-    
     } catch (err) {
       logMensaje("Error en createRoom:", err);
       return res.status(500).json({
@@ -64,6 +63,57 @@ class RoomController {
         ok: false,
         datos: null,
         mensaje: "Error al recuperar una sala",
+      });
+    }
+  }
+  async updateRoom(req, res) {
+    const id_room = req.params.id;
+    const room = req.body;
+    try {
+      const updatedRows = await roomService.updateRoom(id_room, room);
+      if (updatedRows[0] > 0) {
+        return res.status(200).json({
+          ok: true,
+          datos: null,
+          mensaje: "Sala actualizada correctamente",
+        });
+      } else {
+        return res.status(404).json({
+          ok: false,
+          datos: null,
+          mensaje: "Sala no encontrada",
+        });
+      }
+    } catch (err) {
+      logMensaje("Error en updateRoom:", err);
+      return res.status(500).json({
+        ok: false,
+        datos: null,
+        mensaje: "Error al actualizar una sala",
+      });
+    }
+  }
+  
+  async deleteRoom(req, res) {
+    const id_room = req.params.id;
+    try {
+      const deletedRows = await roomService.deleteRoom(id_room);
+      if (deletedRows > 0) {
+        //borrado con exito
+        return res.status(204).send();
+      } else {
+        return res.status(404).json({
+          ok: false,
+          datos: null,
+          mensaje: "Sala no encontrada",
+        });
+      }
+    } catch (err) {
+      logMensaje("Error en deleteRoom:", err);
+      return res.status(500).json({
+        ok: false,
+        datos: null,
+        mensaje: "Error al eliminar una sala",
       });
     }
   }

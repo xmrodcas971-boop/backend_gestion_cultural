@@ -26,6 +26,20 @@ class RoomService {
     const result = await Room.create(room);
     return result;
   }
+  async updateRoom(id_room, room) {
+    // Actualiza una sala por su id
+    const result = await Room.update(room, {
+      where: { room_id: id_room },
+    });
+    return result;
+  }
+  async deleteRoom(id_room) {
+    // Elimina una sala por su id
+    const result = await Room.destroy({
+      where: { room_id: id_room },
+    });
+    return result;
+  }
 }
 
 module.exports = new RoomService();

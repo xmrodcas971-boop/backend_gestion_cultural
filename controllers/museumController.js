@@ -12,7 +12,7 @@ class MuseumController {
         mensaje: "Museos recuperados correctamente",
       });
     } catch (err) {
-    logMensaje("Error en getAllMuseums:", err);
+      logMensaje("Error en getAllMuseums:", err);
       return res.status(500).json({
         ok: false,
         datos: null,
@@ -30,7 +30,6 @@ class MuseumController {
         datos: museumNew,
         mensaje: "Museo creado correctamente",
       });
-    
     } catch (err) {
       logMensaje("Error en createMuseum:", err);
       return res.status(500).json({
@@ -64,6 +63,56 @@ class MuseumController {
         ok: false,
         datos: null,
         mensaje: "Error al recuperar un museo",
+      });
+    }
+  }
+  async updateMuseum(req, res) {
+    const id_museum = req.params.id;
+    const museum = req.body;
+    try {
+      const updatedRows = await museumService.updateMuseum(id_museum, museum);
+      if (updatedRows[0] > 0) {
+        return res.status(200).json({
+          ok: true,
+          datos: null,
+          mensaje: "Museo actualizado correctamente",
+        });
+      } else {
+        return res.status(404).json({
+          ok: false,
+          datos: null,
+          mensaje: "Museo no encontrado",
+        });
+      }
+    } catch (err) {
+      logMensaje("Error en updateMuseum:", err);
+      return res.status(500).json({
+        ok: false,
+        datos: null,
+        mensaje: "Error al actualizar un museo",
+      });
+    }
+  }
+  async deleteMuseum(req, res) {
+    const id_museum = req.params.id;
+    try {
+      const deletedRows = await museumService.deleteMuseum(id_museum);
+      if (deletedRows > 0) {
+        //borrado con exito
+        return res.status(204).send();
+      } else {
+        return res.status(404).json({
+          ok: false,
+          datos: null,
+          mensaje: "Museo no encontrado",
+        });
+      }
+    } catch (err) {
+      logMensaje("Error en deleteMuseum:", err);
+      return res.status(500).json({
+        ok: false,
+        datos: null,
+        mensaje: "Error al eliminar un museo",
       });
     }
   }

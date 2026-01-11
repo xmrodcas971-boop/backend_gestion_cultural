@@ -16,7 +16,7 @@ class MuseumService {
     const result = await Museum.findAll();
     return result;
   }
-   async getMuseumById(id_museum) {
+  async getMuseumById(id_museum) {
     // Devuelve un museo por su id
     const result = await Museum.findByPk(id_museum);
     return result;
@@ -24,6 +24,20 @@ class MuseumService {
   async createMuseum(museum) {
     //Crea un museo
     const result = await Museum.create(museum);
+    return result;
+  }
+  async updateMuseum(id_museum, museum) {
+    // Actualiza un museo por su id
+    const result = await Museum.update(museum, {
+      where: { museum_id: id_museum },
+    });
+    return result;
+  }
+  async deleteMuseum(id_museum) {
+    // Elimina un museo por su id
+    const result = await Museum.destroy({
+      where: { museum_id: id_museum },
+    });
     return result;
   }
 }
