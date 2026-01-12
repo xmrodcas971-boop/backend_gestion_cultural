@@ -1,6 +1,10 @@
 // services/museumService.js
 // Servicio para interactuar con el modelo Sequelize `museums`
 
+// Importar operadores de Sequelize
+const { Op } = require("sequelize");
+// Sirve para usar operadores avanzados de Sequelize en las consultas (WHERE)
+
 // Recuperar función de inicialización de modelos
 const initModels = require("../models/init-models.js").initModels;
 // Crear la instancia de sequelize con la conexión a la base de datos
@@ -37,6 +41,27 @@ class MuseumService {
     // Elimina un museo por su id
     const result = await Museum.destroy({
       where: { museum_id: id_museum },
+    });
+    return result;
+  }
+  async getMuseumsByBudgetRange(min, max) {
+    const result = await Museum.findAll({
+      where: {
+        annual_budget: {
+          [Op.between]: [min, max],
+        },
+      },
+    });
+
+    return result;
+  }
+  async getMuseumsBetweenDates(from, to) {
+    const result = await Museum.findAll({
+      where: {
+        opening_date: {
+          [Op.between]: [from, to],
+        },
+      },
     });
     return result;
   }

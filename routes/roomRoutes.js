@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const roomController = require('../controllers/roomController');
 
+router.get("/area", roomController.getRoomsByAreaRange);
+
 router.get('/', roomController.getAllRooms);
 router.get('/:id', roomController.getRoomById);
 router.post('/', roomController.createRoom);

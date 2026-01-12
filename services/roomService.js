@@ -1,6 +1,10 @@
 // services/roomService.js
 // Servicio para interactuar con el modelo Sequelize `rooms`
 
+// Importar operadores de Sequelize
+const { Op } = require("sequelize");
+// Sirve para usar operadores avanzados de Sequelize en las consultas (WHERE)
+
 // Recuperar función de inicialización de modelos
 const initModels = require("../models/init-models.js").initModels;
 // Crear la instancia de sequelize con la conexión a la base de datos
@@ -40,6 +44,17 @@ class RoomService {
     });
     return result;
   }
+  async getRoomsByAreaRange(min, max) {
+      const result = await Room.findAll({
+        where: {
+          area: {
+            [Op.between]: [min, max],
+          },
+        },
+      });
+  
+      return result;
+    }
 }
 
 module.exports = new RoomService();

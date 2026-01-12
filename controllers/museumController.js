@@ -116,6 +116,90 @@ class MuseumController {
       });
     }
   }
+  async getMuseumsByBudgetRange(req, res) {
+    const { min, max } = req.query;
+
+    // Validaciones básicas
+    if (!min || !max) {
+      return res.status(400).json({
+        ok: false,
+        datos: null,
+        mensaje: "Debe indicar presupuesto mínimo y máximo",
+      });
+    }
+
+    if (Number(min) > Number(max)) {
+      return res.status(400).json({
+        ok: false,
+        datos: null,
+        mensaje: "El presupuesto mínimo no puede ser mayor que el máximo",
+      });
+    }
+
+    try {
+      const museums = await museumService.getMuseumsByBudgetRange(min, max);
+
+      if (museums.length > 0) {
+        return res.status(200).json({
+          ok: true,
+          datos: museums,
+          mensaje: "Museos recuperados correctamente",
+        });
+      } else {
+        return res.status(404).json({
+          ok: false,
+          datos: null,
+          mensaje: "No existen museos en ese rango de presupuesto",
+        });
+      }
+    } catch (err) {
+      logMensaje("Error en getMuseumsByBudgetRange:", err);
+      return res.status(500).json({
+        ok: false,
+        datos: null,
+        mensaje: "Error al filtrar museos por presupuesto",
+      });
+    }
+  }
+
+  async getMuseumsBetweenDates(req, res) {
+    const { from, to } = req.query;
+
+    // parámetros obligatorios
+    if (!from || !to) {
+      return res.status(400).json({
+        ok: false,
+        datos: null,
+        mensaje: "Debe indicar fecha de inicio (from) y fecha de fin (to)",
+      });
+    }
+
+    // from y to deben ser fechas válidas
+    if (new Date(from) > new Date(to)) {
+      return res.status(400).json({
+        ok: false,
+        datos: null,
+        mensaje: "La fecha de inicio no puede ser posterior a la fecha de fin",
+      });
+    }
+    // Llamada al servicio (solo si todo es válido)
+    try {
+      const museums = await museumService.getMuseumsBetweenDates(from, to);
+
+      return res.status(200).json({
+        ok: true,
+        datos: museums,
+        mensaje: "Museos recuperados correctamente entre fechas",
+      });
+    } catch (err) {
+      logMensaje("Error en getMuseumsBetweenDates:", err);
+      return res.status(500).json({
+        ok: false,
+        datos: null,
+        mensaje: "Error al recuperar museos entre fechas",
+      });
+    }
+  }
 }
 
 module.exports = new MuseumController();

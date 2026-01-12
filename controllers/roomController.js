@@ -117,6 +117,51 @@ class RoomController {
       });
     }
   }
+  async getRoomsByAreaRange(req, res) {
+      const { min, max } = req.query;
+  
+      // Validaciones básicas
+      if (!min || !max) {
+        return res.status(400).json({
+          ok: false,
+          datos: null,
+          mensaje: "Debe indicar area mínimo y máximo",
+        });
+      }
+  
+      if (Number(min) > Number(max)) {
+        return res.status(400).json({
+          ok: false,
+          datos: null,
+          mensaje: "El area mínimo no puede ser mayor que el máximo",
+        });
+      }
+  
+      try {
+        const rooms = await roomService.getRoomsByAreaRange(min, max);
+
+        if (rooms.length > 0) {
+          return res.status(200).json({
+            ok: true,
+            datos: rooms,
+            mensaje: "Salas recuperadas correctamente",
+          });
+        } else {
+          return res.status(404).json({
+            ok: false,
+            datos: null,
+            mensaje: "No existen salas en ese rango de área",
+          });
+        }
+      } catch (err) {
+        logMensaje("Error en getRoomsByAreaRange:", err);
+        return res.status(500).json({
+          ok: false,
+          datos: null,
+          mensaje: "Error al filtrar salas por área",
+        });
+      }
+    }
 }
 
 module.exports = new RoomController();
