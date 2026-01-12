@@ -16,7 +16,7 @@ GET http://localhost:3000/api/museums/1
 GET http://localhost:3000/api/museums/50
 
 ### PUT /api/museums/:id actualiza un museo
-PUT http://localhost:3000/api/museums/19
+PUT http://localhost:3000/api/museums/21
 Content-Type: application/json
 
 {
@@ -40,7 +40,7 @@ Content-Type: application/json
 }
 
 ### DELETE /api/museums/:id elimina un museo
-DELETE http://localhost:3000/api/museums/1
+DELETE http://localhost:3000/api/museums/21
 
 ### DELETE /api/museums/:id elimina un museo - NOT FOUND(404)
 DELETE http://localhost:3000/api/museums/50
@@ -49,7 +49,7 @@ DELETE http://localhost:3000/api/museums/50
 GET http://localhost:3000/api/museums
 
 ### GET /api/museums/budget recupera museos por rango de presupuesto
-GET http://localhost:3000/api/museums/budget?min=200&max=300
+GET http://localhost:3000/api/museums/budget?min=100&max=300000
 
 ### GET /api/museums/budget sin parámetros
 GET http://localhost:3000/api/museums/budget

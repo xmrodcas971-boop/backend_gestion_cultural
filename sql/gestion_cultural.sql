@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 08-01-2026 a las 16:22:05
+-- Tiempo de generación: 12-01-2026 a las 18:00:07
 -- Versión del servidor: 8.0.43
 -- Versión de PHP: 8.2.27
 
@@ -41,11 +41,11 @@ CREATE TABLE `museum` (
 --
 
 INSERT INTO `museum` (`museum_id`, `name`, `city`, `annual_budget`, `is_public`, `opening_date`) VALUES
-(2, 'Museo de Arte Moderno', 'Barcelona', 750000.00, 0, '2015-09-15'),
-(5, 'Miguel', 'Peperoni', 0.05, 1, '2026-01-07'),
-(6, 'Jhklj', 'dfgh', 50000.00, 1, '2026-01-28'),
-(7, 'Prueba front', 'Prueba', 300.00, 1, '2026-01-26'),
-(8, 'Cachibache', 'Sevillonga', 4444.00, 0, '2026-01-19');
+(21, 'Museo de Bellas Artes', 'Sevilla', 450000.00, 1, '1995-03-15'),
+(22, 'Museo Arqueológico', 'Córdoba', 300000.00, 1, '1980-06-20'),
+(23, 'Museo de Arte Contemporáneo', 'Málaga', 850000.00, 0, '2010-09-01'),
+(24, 'Museo Histórico Local', 'Granada', 150000.00, 1, '1975-01-10'),
+(25, 'Centro Cultural Moderno', 'Almería', 600000.00, 0, '2018-11-25');
 
 -- --------------------------------------------------------
 
@@ -68,9 +68,15 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`room_id`, `name`, `capacity`, `area`, `is_climatized`, `opening_date`, `museum_id`) VALUES
-(2, 'Sala de Escultura', 80, 200.00, 0, '2018-07-22', 2),
-(3, 'Sala de Arqueología', 140, 250.75, 0, '1983-03-20', 2),
-(4, 'Sala de Historia Medieval', 180, 310.40, 1, '1982-11-10', 2);
+(19, 'Sala Renacimiento', 120, 250.50, 1, '1996-01-10', 21),
+(20, 'Sala Barroco', 80, 180.00, 0, '1997-05-18', 21),
+(21, 'Sala Romana', 60, 140.00, 1, '1981-03-22', 22),
+(22, 'Sala Íbera', 40, 95.50, 0, '1982-07-30', 22),
+(23, 'Sala Vanguardias', 150, 320.00, 1, '2011-10-01', 23),
+(24, 'Sala Multimedia', 100, 210.00, 1, '2012-04-12', 23),
+(25, 'Sala Medieval', 70, 160.00, 0, '1976-09-09', 24),
+(26, 'Sala Exposiciones', 200, 400.00, 1, '2019-01-15', 25),
+(27, 'Sala Temporal', 90, 190.00, 1, '2020-06-01', 25);
 
 --
 -- Índices para tablas volcadas
@@ -97,13 +103,13 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT de la tabla `museum`
 --
 ALTER TABLE `museum`
-  MODIFY `museum_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `museum_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `room`
 --
 ALTER TABLE `room`
-  MODIFY `room_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `room_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas

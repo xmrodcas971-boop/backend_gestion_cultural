@@ -8,16 +8,16 @@ Content-Type: application/json
     "area": 350.50,
     "is_climatized": true,
     "opening_date": "2015-03-10",
-    "museum_id": 2
+    "museum_id": 21
 }
 
 ### GET /api/rooms/:id recupera un sala
-GET http://localhost:3000/api/rooms/1
+GET http://localhost:3000/api/rooms/20
 ### GET /api/rooms/:id recupera un sala - NOT FOUND(404)
 GET http://localhost:3000/api/rooms/50
 
 ### PUT /api/rooms/:id actualiza una sala
-PUT http://localhost:3000/api/rooms/2
+PUT http://localhost:3000/api/rooms/20
 Content-Type: application/json
 
 {
@@ -43,7 +43,7 @@ Content-Type: application/json
 }
 
 ### DELETE /api/rooms/:id elimina una sala
-DELETE http://localhost:3000/api/rooms/1
+DELETE http://localhost:3000/api/rooms/20
 ### DELETE /api/rooms/:id elimina una sala - NOT FOUND(404)
 DELETE http://localhost:3000/api/rooms/50
 
