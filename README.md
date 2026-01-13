@@ -1,6 +1,6 @@
-# Gestion Cultural Backend
+# Gestión Cultural Backend
 
-Backend para el proyecto de gestión Cultural.
+Backend para el proyecto de gestión cultural.
 
 ## Enlace al repositorio de GitHub
 
