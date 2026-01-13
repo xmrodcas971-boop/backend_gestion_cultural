@@ -51,6 +51,9 @@ GET http://localhost:3000/api/museums
 ### GET /api/museums/budget recupera museos por rango de presupuesto
 GET http://localhost:3000/api/museums/budget?min=100&max=300000
 
+### GET /api/museums/budget no existen valores en el rango
+GET http://localhost:3000/api/museums/budget?min=100&max=101
+
 ### GET /api/museums/budget sin parámetros
 GET http://localhost:3000/api/museums/budget
 
@@ -61,6 +64,9 @@ GET http://localhost:3000/api/museums/budget?min=300&max=200
 // NECESARIO PARA LA PRACTICA DE REACT
 ### GET /api/museums/between recupera museos entre fechas
 GET http://localhost:3000/api/museums/between?from=2015-01-01&to=2026-01-01
+
+### GET /api/museums/between no existen valores en el rango
+GET http://localhost:3000/api/museums/between?from=2015-01-01&to=2015-02-01
 
 ### GET /api/museums/between sin fechas
 GET http://localhost:3000/api/museums/between

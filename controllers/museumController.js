@@ -186,11 +186,19 @@ class MuseumController {
     try {
       const museums = await museumService.getMuseumsBetweenDates(from, to);
 
-      return res.status(200).json({
-        ok: true,
-        datos: museums,
-        mensaje: "Museos recuperados correctamente entre fechas",
-      });
+      if (museums.length > 0) {
+        return res.status(200).json({
+          ok: true,
+          datos: museums,
+          mensaje: "Museos recuperados correctamente",
+        });
+      } else {
+        return res.status(404).json({
+          ok: false,
+          datos: null,
+          mensaje: "No existen museos en ese rango de fechas",
+        });
+      }
     } catch (err) {
       logMensaje("Error en getMuseumsBetweenDates:", err);
       return res.status(500).json({
