@@ -1,4 +1,4 @@
-# Gestion Ciencia Backend
+# Gestion Cultural Backend
 
 Backend para el proyecto de gestión Cultural.
 
