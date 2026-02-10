@@ -10,6 +10,7 @@ router.get("/budget", museumController.getMuseumsByBudgetRange);
 
 // Rutas generales
 router.get('/', museumController.getAllMuseums);
+router.get('/graph', museumController.getMuseumsDataGraph);
 router.get('/:id', museumController.getMuseumById);
 router.post('/', museumController.createMuseum);
 router.put('/:id', museumController.updateMuseum);

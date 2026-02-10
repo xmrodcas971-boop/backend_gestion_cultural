@@ -13,6 +13,7 @@ const sequelize = require("../config/sequelize.js");
 const models = initModels(sequelize);
 // Recuperar el modelo museum
 const Museum = models.museum;
+const Room = models.room;
 
 class MuseumService {
   async getAllMuseums() {
@@ -63,6 +64,23 @@ class MuseumService {
         },
       },
     });
+    return result;
+  }
+
+  async getMuseumsDataGraph() {
+    const result = await Room.findAll({
+      attributes: ["museum_id", [sequelize.fn("COUNT", sequelize.col("room_id")), "total"]],
+      include: [
+        {
+          model: Museum,
+          as: "museum",
+          attributes: ["name"],
+        },
+      ],
+      group: ["room.museum_id", "museum.name"],
+      raw: true,
+    });
+
     return result;
   }
 }

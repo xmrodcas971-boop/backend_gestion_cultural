@@ -5,6 +5,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const { logMensaje } = require("./utils/logger.js");
+//const config = require('./config');
 
 // Rutas de la API
 const museumRoutes = require("./routes/museumRoutes");
@@ -47,6 +48,10 @@ app.use("/api/rooms", roomRoutes);
 // ============================================
 // SERVIDOR
 // ============================================
-app.listen(port, () => {
-  logMensaje(`Servidor escuchando en el puerto ${port}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`Servidor escuchando en el puerto ${port}`);
+  });
+}
+// Exportamos la aplicación para poder hacer pruebas
+module.exports = app;

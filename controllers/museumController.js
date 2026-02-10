@@ -208,6 +208,23 @@ class MuseumController {
       });
     }
   }
+  async getMuseumsDataGraph(req, res) {
+    try {
+      const museumsData = await museumService.getMuseumsDataGraph();
+      return res.status(200).json({
+        ok: true,
+        datos: museumsData,
+        mensaje: "Datos de museos recuperados correctamente",
+      });
+    } catch (err) {
+      logMensaje("Error en getMuseumsDataGraph:", err);
+      return res.status(500).json({
+        ok: false,
+        datos: null,
+        mensaje: "Error al recuperar datos de museos",
+      });
+    }
+  }
 }
 
 module.exports = new MuseumController();
